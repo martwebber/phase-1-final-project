@@ -1,50 +1,23 @@
-const getMovies = () =>{
-fetch('http://localhost:3000/movies/?i=tt3896198')
-	.then(response => response.json())
-	.then(response => renderPage(response))
-	.catch(err => console.error(err));
-
+const options = {
+	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json',
+	}
 }
 
+const getMovies = (movie,year) =>{
+	fetch(`https://omdbapi.com/?i=${movie}&y=${year}&apikey=337b036b`)
+	.then(response => response.json())
+	.then(response => renderPage(response))
+	.catch(err => console.log(err));
+
+}
 const renderPage = (movie) => {
-	const searchByIdForm = `
 	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<form class="search-form" id="search-by-id" name="search-type" onsubmit="return false;">
-					<label class="control-label" for="id">Id:</label>
-					<input type="text" id="id" name="id" class="input-small">
-					<label class="control-label" for="y">Year:</label>
-					<input type="text" id="year" name="year" class="input-small" style="width: 100px;">
-					<button id="search-button" type="button" class="btn-sm btn-primary">Search</button>
-					<button id="search-reset" type="reset" class="btn-sm">Reset</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	`
-	const searchByTitleForm = `
-	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<form class="search-form" id="search-by-id" name="search-type" onsubmit="return false;">
-					<label class="control-label" for="title">Title:</label>
-					<input type="text" id="title" name="title" class="input-small">
-					<label class="control-label" for="year">Year:</label>
-					<input type="text" id="year" name="year" class="input-small" style="width: 100px;">
-					<button id="search-button" type="button" class="btn-sm btn-primary">Search</button>
-					<button id="search-reset" type="reset" class="btn-sm">Reset</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	`
 	const resultsCard = `
 	
 	<div id="poster">
-                    <img src="${movie[0].Poster}" alt="">
+                    <img src="${movie[0].Poster}" alt=""/>
                 </div>
                 <div id="movie-info">
                     <table>
@@ -142,29 +115,49 @@ const renderPage = (movie) => {
                         </tr>
                     </table>
                 </div>
-
 	`
-const container = document.querySelector('#movie-container')
+let container = document.querySelector('#movie-container')
 
 	let selectEl = document.getElementById('search-type')
-
+	const formSection = document.getElementById('#form-section') 
+	const searchForm = document.querySelector('form.search-form')
+	const movieInput = document.querySelector('#search-input')
+	let year = document.querySelector("#year")
+	let searchLabel = document.querySelector('form #search-label')
 	selectEl.addEventListener(`change`, (e) => {
 		const select = e.target;
 		const selectedValue = select.options[select.selectedIndex].text;
 		if (selectedValue === "Search by id"){
-			container.innerHTML = searchByIdForm
-			document.querySelector('#container').appendChild(container)
+			searchForm.setAttribute("id", "search-by-id")
+			movieInput.setAttribute("name", "i")
+			//year.setAttribute("name", "y")
+			searchLabel.innerText = "Id"
 		}else{
-			container.innerHTML = searchByTitleForm           
-			document.querySelector('#container').appendChild(container)		}
+			searchForm.setAttribute("id", "search-by-title")
+			movieInput.setAttribute("name", "t")
+			searchLabel.innerText = "Title"
+
+			}
 	  });
 	  container.innerHTML = resultsCard
+
+	const searchButton = document.querySelector('#search-button')
+	//console.log(searchButton)
+	searchButton.addEventListener('click', (e) =>{
+		e.preventDefault();
+		container.innerHTML = ''
+		const movieInput = document.querySelector('#search-input').value
+		const year = document.querySelector("#year").value
+		console.log(movieInput,year)
+		getMovies(movieInput,year)
+	})
 }
 
 const init = () =>{
 	document.addEventListener('DOMContentLoaded',()=>{
-		//renderPage()
 		getMovies()
+		//renderPage()
+
 	})
 }
 init()

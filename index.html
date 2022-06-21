@@ -1,28 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetsChill Finder</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <script defer src="./js/index.js"></script>
-</head>
-<body>
-    <div id="container" class="container">
-        <h1>NetsChill Finder</h1>
-        <p>NetsChill Finder allows you to search for information about your favourite movies and tv shows. You can search using the movie title(ex:Guardians of the Galaxy Vol. 2) or IMBDid(ex:tt3896198). Select your prefered search type from the dropdown below</p>
-<div>
-    <select name="search-type" id="search-type">
-        <option value="search-by-id" selected>Select search type </option>
-        <option value="search-by-id">Search by id</option>
-        <option value="search-by-title">Search by title</option>
-    </select>
-</div>
-<div id="movie-container">
-                                                
-</div>
-    
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NetsChill Finder</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <script defer src="./js/index.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+            <h1>NetsChill Finder</h1>
+            <p>NetsChill Finder allows you to search for information about your favourite movies and tv shows. You can search using the movie title(ex:Guardians of the Galaxy Vol. 2) or IMBDid(ex:tt3896198). Select your prefered search type from the dropdown below</p>
+            <div>
+                <select name="search-type" id="search-type">
+                    <option value="search-by-id" selected>Select search type </option>
+                    <option value="search-by-id">Search by id</option>
+                    <option value="search-by-title">Search by title</option>
+                </select>
+            </div>
+            <div id="form-section">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bs-component">
+                            <form class="search-form" name="search-type" onsubmit="return false;">
+                                <label class="control-label" for="id" id="search-label">Id:</label>
+                                <input type="text" id="search-input" name="id" class="input-small">
+                                <label class="control-label" for="y">Year:</label>
+                                <input type="text" id="year" name="y" class="input-small" style="width: 100px;">
+                                <input id="search-button" type="submit" class="btn-sm btn-primary" value="Search">
+                                <button id="search-reset" type="reset" class="btn-sm">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="movie-container" >
+                <!-- <div id="poster">
+                    <img src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg" alt="">
+                </div>
+                <div id="movie-info">
+                    <table>
+                        <tr>
+                            <td>Title:</td>
+                            <td>Guardians of the Galaxy Vol. 2</td>
+                        </tr>
+                        <tr>
+                            <td>Year:</td>
+                            <td>2017</td>
+                        </tr>
+                        <tr>
+                            <td>Rated:</td>
+                            <td>PG-13</td>
+                        </tr>
+                        <tr>
+                            <td>Released</td>
+                            <td>05 May 2017</td>
+                        </tr>
+                        <tr>
+                            <td>Runtime</td>
+                            <td>136 min</td>
+                        </tr>
+                        <tr>
+                            <td>Genre</td>
+                            <td>Action, Adventure, Comedy</td>
+                        </tr>
+                        <tr>
+                            <td>Director</td>
+                            <td>James Gunn</td>
+                        </tr>
+                        <tr>
+                            <td>Writer</td>
+                            <td>James Gunn, Dan Abnett, Andy Lanning</td>
+                        </tr>
+                        <tr>
+                            <td>Actors</td>
+                            <td>Chris Pratt, Zoe Saldana, Dave Bautista</td>
+                        </tr>
+                        <tr>
+                            <td>Plot</td>
+                            <td>The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.</td>
+                        </tr>
+                        <tr>
+                            <td>Language</td>
+                            <td>English</td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td>United States</td>
+                        </tr>
+                        <tr>
+                            <td>Awards</td>
+                            <td>Nominated for 1 Oscar. 15 wins & 59 nominations total</td>
+                        </tr>
+                        <tr>
+                            <td>Ratings</td>
+                            <td>United States</td>
+                        </tr>
+                        <tr>
+                            <td>Metascore: </td>
+                            <td>67</td>
+                        </tr>
+                        <tr>
+                            <td>ImdbRating</td>
+                            <td>7.6</td>
+                        </tr>
+                        <tr>
+                            <td>Imdb Votes</td>
+                            <td>655,156</td>
+                        </tr>
+                        <tr>
+                            <td>ImdbID</td>
+                            <td>tt3896198</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Movie</td>
+                        </tr>
+                        <tr>
+                            <td>DVD</td>
+                            <td>22 Aug 2017</td>
+                        </tr>
+                        <tr>
+                            <td>BoxOffice</td>
+                            <td>$389,813,101</td>
+                        </tr>
+                        <tr>
+                            <td>Production</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td>N/A</td>
+                        </tr>
+                    </table>
+                </div> -->
+            </div>                                              
+        </div>
+    </body>
 </html>
