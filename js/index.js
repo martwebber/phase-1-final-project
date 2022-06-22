@@ -167,8 +167,7 @@ const renderSearchForm = () =>{
       const resetButton = document.querySelector('#search-button')
       resetButton.addEventListener('click',(e) =>{
         e.preventDefault();
-        document.querySelector('form.search-form').reset()      
-    })
+        document.querySelector('form.search-form').reset()      })
 }
 
 const init = () =>{
