@@ -1,66 +1,175 @@
-const getMovies = () =>{
-fetch('http://localhost:3000/movies/?i=tt3896198')
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-
+const options = {
+	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json',
+	}
 }
 
-const renderPage = () => {
-	const searchByIdForm = `
-	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<form class="search-form" id="search-by-id" name="search-type" onsubmit="return false;">
-					<label class="control-label" for="id">Id:</label>
-					<input type="text" id="id" name="id" class="input-small">
-					<label class="control-label" for="y">Year:</label>
-					<input type="text" id="year" name="year" class="input-small" style="width: 100px;">
-					<button id="search-button" type="button" class="btn-sm btn-primary">Search</button>
-					<button id="search-reset" type="reset" class="btn-sm">Reset</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	`
-	const searchByTitleForm = `
-	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="bs-component">
-				<form class="search-form" id="search-by-id" name="search-type" onsubmit="return false;">
-					<label class="control-label" for="title">Title:</label>
-					<input type="text" id="title" name="title" class="input-small">
-					<label class="control-label" for="year">Year:</label>
-					<input type="text" id="year" name="year" class="input-small" style="width: 100px;">
-					<button id="search-button" type="button" class="btn-sm btn-primary">Search</button>
-					<button id="search-reset" type="reset" class="btn-sm">Reset</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	`
-const container = document.querySelector('#movie-container')
+const getMovies = (url) =>{
+	fetch(url)
+	.then(response => response.json())
+	.then(response => renderPage(response))
+	.catch(err => console.log(err));
 
-	let selectEl = document.getElementById('search-type')
+}
+const renderPage = (movie) => {
+	
+	const resultsCard = `
+	
+	<div id="poster">
+                    <img src="${movie.Poster}" alt=""/>
+                </div>
+                <div id="movie-info">
+                    <table>
+                        <tr>
+                            <td>Title:</td>
+                            <td>${movie.Title}</td>
+                        </tr>
+                        <tr>
+                            <td>Year:</td>
+                            <td>${movie.Year}</td>
+                        </tr>
+                        <tr>
+                            <td>Rated:</td>
+                            <td>${movie.Rated}</td>
+                        </tr>
+                        <tr>
+                            <td>Released:</td>
+                            <td>${movie.Released}</td>
+                        </tr>
+                        <tr>
+                            <td>Runtime:</td>
+                            <td>${movie.Runtime}</td>
+                        </tr>
+                        <tr>
+                            <td>Genre:</td>
+                            <td>${movie.Genre}</td>
+                        </tr>
+                        <tr>
+                            <td>Director:</td>
+                            <td>${movie.Director}</td>
+                        </tr>
+                        <tr>
+                            <td>Writer:</td>
+                            <td>${movie.Writer}</td>
+                        </tr>
+                        <tr>
+                            <td>Actors:</td>
+                            <td>${movie.Actors}</td>
+                        </tr>
+                        <tr>
+                            <td>Plot:</td>
+                            <td>${movie.Plot}</td>
+                        </tr>
+                        <tr>
+                            <td>Language:</td>
+                            <td>${movie.Language}</td>
+                        </tr>
+                        <tr>
+                            <td>Country:</td>
+                            <td>${movie.Country}</td>
+                        </tr>
+                        <tr>
+                            <td>Awards:</td>
+                            <td>${movie.Awards}</td>
+                        </tr>
+                        <tr>
+                            <td>Ratings:</td>
+                            <td>United States</td>
+                        </tr>
+                        <tr>
+                            <td>Metascore: </td>
+                            <td>${movie.Metascore}</td>
+                        </tr>
+                        <tr>
+                            <td>ImdbRating:</td>
+                            <td>${movie.imdbRating}</td>
+                        </tr>
+                        <tr>
+                            <td>Imdb Votes</td>
+                            <td>${movie.imdbVotes}</td>
+                        </tr>
+                        <tr>
+                            <td>ImdbID</td>
+                            <td>${movie.imdbID}</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>${movie.Type}</td>
+                        </tr>
+                        <tr>
+                            <td>DVD</td>
+                            <td>${movie.DVD}</td>
+                        </tr>
+                        <tr>
+                            <td>BoxOffice</td>
+                            <td>${movie.BoxOffice}</td>
+                        </tr>
+                        <tr>
+                            <td>Production</td>
+                            <td>${movie.Production}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td>${movie.Website}</td>
+                        </tr>
+                    </table>
+                </div>
+	`
+let container = document.querySelector('#movie-container')
 
-	selectEl.addEventListener(`change`, (e) => {
+		  container.innerHTML = resultsCard
+	const searchButton = document.querySelector('#search-button')
+	//console.log(searchButton)
+	searchButton.addEventListener('click', (e) =>{
+		e.preventDefault();
+		container.innerHTML = ''
+		const movieInput = document.querySelector('#search-input').value
+		const year = document.querySelector("#year").value
+		console.log('movieInput','year')
+		getMovies(movieInput,year)           
+	})
+}
+
+const renderSearchForm = () =>{
+    const baseUrl = 'https://omdbapi.com'
+    const apiKey = '337b036b'
+    let searchBy = ''
+    let selectEl = document.getElementById('search-type')
+	const formSection = document.getElementById('#form-section') 
+	const searchForm = document.querySelector('form.search-form')
+	const movieInput = document.querySelector('#search-input')
+	let searchLabel = document.querySelector('form #search-label')
+	selectEl.addEventListener('change', (e) => {
+        e.preventDefault()
 		const select = e.target;
 		const selectedValue = select.options[select.selectedIndex].text;
 		if (selectedValue === "Search by id"){
-			container.innerHTML = searchByIdForm
-			document.querySelector('#container').appendChild(container)
+			searchForm.setAttribute("id", "search-by-id")
+			movieInput.setAttribute("name", "i")
+            searchBy = 'i'
+			searchLabel.innerText = "Id"
 		}else{
-			container.innerHTML = searchByTitleForm           
-			document.querySelector('#container').appendChild(container)		}
+			searchForm.setAttribute("id", "search-by-title")
+			movieInput.setAttribute("name", "t")
+            searchBy = 't'
+			searchLabel.innerText = "Title"
+			}
 	  });
-
+      const searchButton = document.querySelector('#search-button')
+      searchButton.addEventListener('click', (e) =>{
+          e.preventDefault();
+          const movieInput = document.querySelector('#search-input').value
+          const year = document.querySelector("#year").value
+          let fullUrl = `${baseUrl}/?${searchBy}=${movieInput}&y=${year}&apiKey=${apiKey}`
+          console.log(fullUrl)
+          getMovies(fullUrl)           
+      })
 }
 
 const init = () =>{
 	document.addEventListener('DOMContentLoaded',()=>{
-		renderPage()
+		renderSearchForm()
 	})
 }
 init()
