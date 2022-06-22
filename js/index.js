@@ -136,7 +136,6 @@ const renderSearchForm = () =>{
     const apiKey = '337b036b'
     let searchBy = ''
     let selectEl = document.getElementById('search-type')
-	const formSection = document.getElementById('#form-section') 
 	const searchForm = document.querySelector('form.search-form')
 	const movieInput = document.querySelector('#search-input')
 	let searchLabel = document.querySelector('form #search-label')
@@ -165,6 +164,11 @@ const renderSearchForm = () =>{
           console.log(fullUrl)
           getMovies(fullUrl)           
       })
+      const resetButton = document.querySelector('#search-button')
+      resetButton.addEventListener('click',(e) =>{
+        e.preventDefault();
+        document.querySelector('form.search-form').reset()      
+    })
 }
 
 const init = () =>{
