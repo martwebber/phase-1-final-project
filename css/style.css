@@ -19,3 +19,23 @@ td{
 #movie-container{
     margin-top: 10px;
 }
+div{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 2px;
+    margin-left: 3px;
+    margin-right: 3px;    
+  }
+.btn-primary:hover{
+    color: #fff;
+    background-color:#000;
+}
+#notice{
+    background-color:yellow
+}

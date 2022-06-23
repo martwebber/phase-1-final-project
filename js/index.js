@@ -1,15 +1,15 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'Content-Type': 'application/json',
-	}
-}
-
 const getMovies = (url) =>{
 	fetch(url)
 	.then(response => response.json())
-	.then(response => renderPage(response))
-	.catch(err => console.log(err));
+	.then(response => { 
+        console.log(response)
+        if(response.Response === 'False'){
+            alert(response.Error)
+        }else{
+            renderPage(response)
+        }
+    })
+	.catch(err => err);
 
 }
 const renderPage = (movie) => {
@@ -116,12 +116,11 @@ const renderPage = (movie) => {
                     </table>
                 </div>
 	`
-let container = document.querySelector('#movie-container')
+    let container = document.querySelector('#movie-container')
 
-		  container.innerHTML = resultsCard
+	container.innerHTML = resultsCard
 	const searchButton = document.querySelector('#search-button')
-	//console.log(searchButton)
-	searchButton.addEventListener('click', (e) =>{
+	searchButton.addEventListener('submit', (e) =>{
 		e.preventDefault();
 		container.innerHTML = ''
 		const movieInput = document.querySelector('#search-input').value
@@ -139,8 +138,10 @@ const renderSearchForm = () =>{
 	const searchForm = document.querySelector('form.search-form')
 	const movieInput = document.querySelector('#search-input')
 	let searchLabel = document.querySelector('form #search-label')
+    document.querySelector('#search-button').disabled=true
 	selectEl.addEventListener('change', (e) => {
         e.preventDefault()
+       document.querySelector('#search-button').disabled=false
 		const select = e.target;
 		const selectedValue = select.options[select.selectedIndex].text;
 		if (selectedValue === "Search by id"){
@@ -156,18 +157,27 @@ const renderSearchForm = () =>{
 			}
 	  });
       const searchButton = document.querySelector('#search-button')
-      searchButton.addEventListener('click', (e) =>{
-          e.preventDefault();
-          const movieInput = document.querySelector('#search-input').value
-          const year = document.querySelector("#year").value
-          let fullUrl = `${baseUrl}/?${searchBy}=${movieInput}&y=${year}&apiKey=${apiKey}`
-          console.log(fullUrl)
-          getMovies(fullUrl)           
+
+    searchButton.addEventListener('click', (e) =>{
+        e.preventDefault();
+        const movieInput = document.querySelector('#search-input').value
+        const year = document.querySelector("#year").value
+        if(movieInput === ''){
+            alert('You did not type a movie title or IMDB id. Try again!')
+        }
+        else{
+        let fullUrl = `${baseUrl}/?${searchBy}=${movieInput}&y=${year}&apiKey=${apiKey}`
+        console.log(fullUrl)
+        getMovies(fullUrl)           
+        }
       })
+
       const resetButton = document.querySelector('#search-button')
+
       resetButton.addEventListener('click',(e) =>{
         e.preventDefault();
-        document.querySelector('form.search-form').reset()      })
+        document.querySelector('form.search-form').reset()     
+     })
 }
 
 const init = () =>{
