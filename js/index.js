@@ -2,7 +2,6 @@ const getMovies = (url) =>{
 	fetch(url)
 	.then(response => response.json())
 	.then(response => { 
-        console.log(response)
         if(response.Response === 'False'){
             alert(response.Error)
         }else{
@@ -125,7 +124,6 @@ const renderPage = (movie) => {
 		container.innerHTML = ''
 		const movieInput = document.querySelector('#search-input').value
 		const year = document.querySelector("#year").value
-		console.log('movieInput','year')
 		getMovies(movieInput,year)           
 	})
 }
@@ -167,7 +165,6 @@ const renderSearchForm = () =>{
         }
         else{
         let fullUrl = `${baseUrl}/?${searchBy}=${movieInput}&y=${year}&apiKey=${apiKey}`
-        console.log(fullUrl)
         getMovies(fullUrl)           
         }
       })
