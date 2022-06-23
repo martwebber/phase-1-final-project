@@ -16,7 +16,7 @@ const getMovies = (url) =>{
 const renderPage = (movie) => {
 	
 	const resultsCard = `
-	
+	<h2>Information about ${movie.Title}</h2>
 	<div id="poster">
                     <img src="${movie.Poster}" alt=""/>
                 </div>
