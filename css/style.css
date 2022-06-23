@@ -1,5 +1,5 @@
 body{
-    background-color:rgb(145, 140, 140)
+    background-color:#564d4d
 }
 .container {
     text-align: center;
@@ -55,7 +55,7 @@ div{
 }
 
 .card {
-    background-color: #fff;
+    background: #000;
     border-radius: 20px;
     box-shadow: 0 5px 10px rgba(88, 115, 211, 0.05),
         0 15px 40px rgba(15, 15, 15, 0.1);
@@ -90,4 +90,7 @@ input {
 input[type="text"]{ 
     padding: 5px 5px; 
     line-height: 18px; 
+}
+#movie-title, #page-title{
+    color:#db0000
 }
