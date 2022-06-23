@@ -4,10 +4,7 @@
     margin: auto;
     padding: 10px;
 }
-/* #movie-container > div{
-    width: 50%;
-    float: left;
-} */
+
 table {
    margin-left: auto;
    margin-right: auto;
@@ -15,8 +12,6 @@ table {
    text-align: left;                                      
 }
 
-#movie-info{
-}
 td{
     border-bottom: 1px solid #ccc;
     font-size:17px;
@@ -24,4 +19,24 @@ td{
 }
 #movie-container{
     margin-top: 10px;
+}
+div{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 2px;
+    margin-left: 3px;
+    margin-right: 3px;    
+  }
+.btn-primary:hover{
+    color: #fff;
+    background-color:#000;
+}
+#notice{
+    background-color:yellow
 }
