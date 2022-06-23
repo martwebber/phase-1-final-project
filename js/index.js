@@ -5,8 +5,8 @@ const getMovies = (url) =>{
         if(response.Response === 'False'){
             alert(response.Error)
         }else{
-            const test = document.getElementById("movie-container")
-            test.classList.remove('hidden')
+            const resultsSection = document.getElementById("movie-container")
+            resultsSection.classList.remove('hidden')
             renderPage(response)
         }
     })
