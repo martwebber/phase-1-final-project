@@ -10,28 +10,31 @@
     </head>
     <body>
         <div id="container" class="container">
-            <h1>NetsChill</h1>
-            <p>NetsChill allows you to search for information about your favourite movies and tv shows. You can search using the movie title(ex:Guardians of the Galaxy Vol. 2) or IMDb ID(ex:tt3896198). Select your prefered search type from the dropdown below.</p>
-            <span id="notice"><strong>The search button is disabled by default, select a search type(Search by id or title) to enable it. </strong></span>
-            <div>
-                <select name="search-type" id="search-type">
-                    <option value="search-by-id" selected>Select search type </option>
-                    <option value="search-by-id">Search by id</option>
-                    <option value="search-by-title">Search by title</option>
-                </select>
-            </div>
-            <div id="form-section">
-                <form class="search-form" name="search-type" onsubmit="return false;">
-                    <label class="control-label" for="id" id="search-label">Id:</label>
-                    <input type="text" id="search-input" name="id" class="input-small">
-                    <label class="control-label" for="y">Year:</label>
-                    <input type="text" id="year" name="y" class="input-small" style="width: 100px;">
-                    <input id="search-button" type="submit" class="btn-sm btn-primary" value="Search">
-                    <button id="search-reset" type="reset" class="btn-sm">Reset</button>
-                </form>
-            </div>
-            <div id="movie-container" >
+                <div class="info-card">
+                <h1>NetsChill</h1>
+                <p>NetsChill allows you to search for information about your favourite movies and tv shows. You can search using the movie title(ex:Guardians of the Galaxy Vol. 2) or IMDb ID(ex:tt3896198). Select your prefered search type from the dropdown below.</p>
+                <span id="notice"><strong>The search button is disabled by default, select a search type(Search by id or title) to enable it. </strong></span>
+                <div>
+                    <select name="search-type" id="search-type">
+                        <option value="search-by-id" selected>Select search type </option>
+                        <option value="search-by-id">Search by id</option>
+                        <option value="search-by-title">Search by title</option>
+                    </select>
+                </div>
+                <div id="form-section">
+                    <form class="search-form" name="search-type" onsubmit="return false;">
+                        <label class="control-label" for="id" id="search-label">Id:</label>
+                        <input type="text" id="search-input" name="id" size="25">
+                        <label class="control-label" for="y">Year:</label>
+                        <input type="text" id="year" name="y" size="10">
+                        <input id="search-button" type="submit" class="btn-sm btn-primary" value="Search" >
+                        <input id="search-reset" type="reset" class="btn-sm" value="Reset">
+                    </form>
+                </div>
+                <br/>
+                <div id="movie-container" class=" hidden " >
                 
+                </div>
             </div>
             <footer id="footer">
                 <span>&copy; NetsChill 2022</span>

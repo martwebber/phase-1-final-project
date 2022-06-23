@@ -5,6 +5,8 @@ const getMovies = (url) =>{
         if(response.Response === 'False'){
             alert(response.Error)
         }else{
+            const test = document.getElementById("movie-container")
+            test.classList.remove('hidden')
             renderPage(response)
         }
     })
@@ -74,7 +76,7 @@ const renderPage = (movie) => {
                         </tr>
                         <tr>
                             <td>Ratings:</td>
-                            <td>United States</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Metascore: </td>
