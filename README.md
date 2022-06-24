@@ -16,6 +16,9 @@ In this project, I have created a web app that allows users to search for inform
 ## Project link  
 https://github.com/martwebber/phase-1-final-project
 
+## Github pages link
+https://martwebber.github.io/phase-1-final-project
+
 ## Contacts  
 If you have any question or feedback about the project, you can reach out to me via Email: mwangi.martin24@gmail.com or send me a message on
 [LinkedIn](https://www.linkedin.com/in/martin-mwangi-46523483/)
