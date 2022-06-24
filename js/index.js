@@ -3,7 +3,7 @@ const getMovies = (url) =>{
 	.then(response => response.json())
 	.then(response => { 
         if(response.Response === 'False'){
-            alert(response.Error)
+            alert(response.Error) 
         }else{
             const resultsSection = document.getElementById("movie-container")
             resultsSection.classList.remove('hidden')
@@ -11,8 +11,8 @@ const getMovies = (url) =>{
         }
     })
 	.catch(err => err);
-
 }
+
 const renderPage = (movie) => {
 	
 	const resultsCard = `
